@@ -1,0 +1,149 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Nov 5, 2024 at 9:17 PM
+-- Server version: 8.0.30-MySQL
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+CREATE TABLE `appointment` (
+  `AppointmentID` int(11) NOT NULL,
+  `AppointmentDate` datetime DEFAULT NULL,
+  `ClientID` int(11) NOT NULL,
+  `PetID` int(11) DEFAULT NULL,
+  `EmployeeID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `appointment` (`AppointmentID`, `AppointmentDate`, `ClientID`, `PetID`, `EmployeeID`) VALUES
+(401, '2024-10-01 08:00:00', 201, 301, 101),
+(402, '2024-10-02 09:30:00', 202, 302, 102),
+(403, '2024-10-03 10:00:00', 203, 303, 103),
+(404, '2024-10-04 11:30:00', 204, 304, 104),
+(405, '2024-10-05 12:45:00', 205, 305, 105),
+(406, '2024-10-06 14:15:00', 206, 306, 106),
+(407, '2024-10-07 15:30:00', 207, 307, 107),
+(408, '2024-10-08 16:45:00', 208, 308, 108),
+(409, '2024-10-09 17:00:00', 209, 309, 109),
+(410, '2024-10-10 18:30:00', 210, 310, 110);
+
+
+CREATE TABLE `client` (
+  `ClientID` int(11) NOT NULL,
+  `FirstName` varchar(50) DEFAULT NULL,
+  `LastName` varchar(50) DEFAULT NULL,
+  `DateOfBirth` date DEFAULT NULL,
+  `Address` varchar(255) DEFAULT NULL,
+  `TelephoneNumber` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `client` (`ClientID`, `FirstName`, `LastName`, `DateOfBirth`, `Address`, `TelephoneNumber`) VALUES
+(201, 'John', 'Doe', '1984-06-15', '12 Main Street, Springfield', '09170000001'),
+(202, 'Jane', 'Smith', '1980-08-20', '45 Willow Avenue, Springfield', '09180000002'),
+(203, 'Sam', 'Johnson', '1991-04-10', '78 Cedar Boulevard, Springfield', '09190000003'),
+(204, 'Chris', 'Brown', '1983-07-23', '32 Pine Street, Springfield', '09100000004'),
+(205, 'Alex', 'Taylor', '1996-02-12', '67 Oak Circle, Springfield', '09110000005'),
+(206, 'Casey', 'Rodriguez', '1989-10-09', '19 Birch Avenue, Springfield', '09120000006'),
+(207, 'Jordan', 'Lee', '1985-03-17', '90 Maple Drive, Springfield', '09130000007'),
+(208, 'Cameron', 'Miller', '1993-09-22', '123 Chestnut Lane, Springfield', '09140000008'),
+(209, 'Riley', 'Garcia', '1992-05-18', '56 Oakwood Street, Springfield', '09150000009'),
+(210, 'Morgan', 'Martinez', '1994-12-29', '89 Cherry Avenue, Springfield', '09160000010');
+
+CREATE TABLE `employee` (
+  `EmployeeID` int(11) NOT NULL,
+  `SSN` varchar(40) DEFAULT NULL,
+  `FirstName` varchar(50) DEFAULT NULL,
+  `LastName` varchar(50) DEFAULT NULL,
+  `School` varchar(100) DEFAULT NULL,
+  `Role` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO employee (EmployeeID, SSN, FirstName, LastName, School, Role) VALUES
+(101, 'SSN1234567890', 'Charlie', 'Green', 'University of Veterinary Medicine', 'Veterinarian'),
+(102, 'SSN2234567891', 'Taylor', 'White', 'College of Animal Health', 'Veterinarian'),
+(103, 'SSN3234567892', 'Jordan', 'Walker', 'Institute of Animal Care', 'Veterinarian'),
+(104, 'SSN4234567893', 'Casey', 'Harris', 'Veterinary Science Academy1', 'Veterinary Technician'),
+(105, 'SSN52345678941', 'Jamie', 'Young', 'School of Veterinary Science', 'Veterinarian'),
+(106, 'SSN6234567895', 'Peyton', 'Adams', 'Tech School for Animal Care', 'Veterinary Technician'),
+(107, 'SSN7234567896', 'Riley', 'Clark', 'Animal Health Technician Institute', 'Veterinarian'),
+(108, 'SSN8234567897', 'Morgan', 'Lopez', 'Pet Care Technician College', 'Veterinary Technician'),
+(109, 'SSN9234567898', 'Alex', 'Anderson', 'College of Pet Care', 'Veterinary Technician'),
+(110, 'SSN1023456789', 'Taylor', 'Thomas', 'Animal Care Tech Academy', 'Veterinary Technician');
+
+CREATE TABLE `pet` (
+  `PetID` int(11) NOT NULL,
+  `Name` varchar(40) DEFAULT NULL,
+  `Species` varchar(40) DEFAULT NULL,
+  `Breed` varchar(40) DEFAULT NULL,
+  `DateOfBirth` date DEFAULT NULL,
+  `ClientID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `pet` (`PetID`, `Name`, `Species`, `Breed`, `DateOfBirth`, `ClientID`) VALUES
+(301, 'Buddy', 'Dog', 'German Shepherd', '2014-04-15', 201),
+(302, 'Milo', 'Dog', 'Border Collie', '2015-02-11', 202),
+(303, 'Shadow', 'Cat', 'Russian Blue', '2016-06-20', 203),
+(304, 'Luna', 'Dog', 'Dachshund', '2017-09-25', 204),
+(305, 'Chloe', 'Cat', 'British Shorthair', '2018-12-10', 205),
+(306, 'Bella', 'Dog', 'Boxer', '2019-03-30', 206),
+(307, 'Max', 'Dog', 'Australian Shepherd', '2016-08-22', 207),
+(308, 'Daisy', 'Cat', 'Ragdoll', '2020-01-05', 208),
+(309, 'Oliver', 'Cat', 'Sphynx', '2015-10-13', 209),
+(310, 'Coco', 'Dog', 'Chihuahua', '2018-06-27', 210);
+
+CREATE TABLE `test` (
+  `TestID` int(11) NOT NULL,
+  `TestName` varchar(255) DEFAULT NULL,
+  `TestDate` date DEFAULT NULL,
+  `TestResult` text DEFAULT NULL,
+  `AppointmentID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `test` (`TestID`, `TestName`, `TestDate`, `TestResult`, `AppointmentID`) VALUES
+(501, 'Blood Test', '2024-10-01', 'Slightly Elevated', 401),
+(502, 'X-Ray', '2024-10-03', 'Fracture Detected', 402),
+(503, 'Urine Test', '2024-10-05', 'Normal', 403),
+(504, 'Allergy Test', '2024-10-07', 'Positive for Seasonal Allergy', 404),
+(505, 'Heartworm Test', '2024-10-09', 'Requires Follow-up', 405),
+(506, 'Blood Test', '2024-10-11', 'High Cholesterol', 406),
+(507, 'Skin Scrape', '2024-10-13', 'Mild Infection', 407),
+(508, 'X-Ray', '2024-10-15', 'Clear', 408),
+(509, 'Urine Test', '2024-10-17', 'Signs of Dehydration', 409),
+(510, 'Allergy Test', '2024-10-19', 'Severe Allergy Detected', 410);
+
+
+ALTER TABLE `appointment`
+  ADD PRIMARY KEY (`AppointmentID`),
+  ADD KEY `ClientID` (`ClientID`),
+  ADD KEY `PetID` (`PetID`),
+  ADD KEY `EmployeeID` (`EmployeeID`);
+
+ALTER TABLE `client`
+  ADD PRIMARY KEY (`ClientID`);
+
+ALTER TABLE `employee`
+  ADD PRIMARY KEY (`EmployeeID`);
+
+ALTER TABLE `pet`
+  ADD PRIMARY KEY (`PetID`),
+  ADD KEY `ClientID` (`ClientID`);
+
+ALTER TABLE `test`
+  ADD PRIMARY KEY (`TestID`),
+  ADD KEY `AppointmentID` (`AppointmentID`);
+
+ALTER TABLE `appointment`
+  ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`ClientID`) REFERENCES `client` (`ClientID`),
+  ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`PetID`) REFERENCES `pet` (`PetID`),
+  ADD CONSTRAINT `appointment_ibfk_3` FOREIGN KEY (`EmployeeID`) REFERENCES `employee` (`EmployeeID`);
+
+ALTER TABLE `pet`
+  ADD CONSTRAINT `pet_ibfk_1` FOREIGN KEY (`ClientID`) REFERENCES `client` (`ClientID`);
+
+ALTER TABLE `test`
+  ADD CONSTRAINT `test_ibfk_1` FOREIGN KEY (`AppointmentID`) REFERENCES `appointment` (`AppointmentID`);
+COMMIT;
